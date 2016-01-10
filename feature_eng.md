@@ -1,8 +1,7 @@
 <h1 style="text-align: center;" markdown="1">Data Science for fraud detection</h1>
 
 <div style="text-align: center;" markdown="1"><font size="5">
-Implementing the
-k-nearest neighbors in Python
+A complete predictive modeling project in Python
 </font>  
 <font size="4">
 Part II: Feature engineering: sorting out the valuable information  
@@ -27,7 +26,7 @@ _____
 [Part II: Feature engineering
 ](mbesancon.github.io/BankNotes/feature_eng.html)  
 [Part III: Model development
-](mbesancon.github.io/BankNotes/feature_eng.html)
+](mbesancon.github.io/BankNotes/model.html)
 
 To follow the following article without any trouble, I would recommend to
 start with the beginning.

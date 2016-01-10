@@ -1,8 +1,7 @@
 <h1 style="text-align: center;" markdown="1">Data Science for fraud detection</h1>
 
 <div style="text-align: center;" markdown="1"><font size="5">
-Implementing the
-k-nearest neighbors in Python
+A complete predictive modeling project in Python
 </font>  
 <font size="4">
 Part I: Preprocessing and exploratory analysis
@@ -24,7 +23,7 @@ ___
 [Part II: Feature engineering
 ](mbesancon.github.io/BankNotes/feature_eng.html)  
 [Part III: Model development
-](mbesancon.github.io/BankNotes/feature_eng.html)
+](mbesancon.github.io/BankNotes/model.html)
 
 # Introduction
 
@@ -56,7 +55,7 @@ or randomness (which is represented by how different adjacent pixels are).
 
 You can find further information on Wavelet on [Wikipedia](https://en.wikipedia.org/wiki/Wavelet_transform)
 or ask [Quora](https://www.quora.com/In-an-intuitive-explanation-what-is-a-wavelet-transform-and-how-does-it-work-in-an-image).
-An explanation of entropy as meant in the image procesing context can
+An explanation of entropy as meant in the image processing context can
 be found [here](http://www.astro.cornell.edu/research/projects/compression/entropy.html)
 
 To get a better understanding of the way the algorithms works,
@@ -83,14 +82,12 @@ but feel free to keep your favorite tools.
 * pandas 0.17.1 for advanced data format, high-level manipulation and visualization
 * pyplot from matplotlib 1.5.0 for basic visualization
 * ggplot 0.6.8, which I think is a much improved way to visualize data
-* urllib3 to parse the data directly from the
-repository (no manual download)
+* urllib3 to parse the data directly from the repository (no manual download)
 
 So our first lines of code (once you placed your data in the proper repository)
 should look like this:
 
 ```python
-
 # Loading librairies
 import numpy as np
 import pandas as pd

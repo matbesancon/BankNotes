@@ -1,7 +1,7 @@
 <h1 style="text-align: center;" markdown="1">Data Science for fraud detection</h1>
 
 <div style="text-align: center;" markdown="1"><font size="5">
-Complete predictive modeling in Python
+A complete predictive modeling project in Python
 </font>  
 <font size="4">
 Part III: Model development
@@ -69,19 +69,19 @@ data, this is called **cross validation**.
 
 Even though this is often not the most efficient algorithm on real data,
 it is visually easy to understand and simple to implement from scratch.
+Plus, it covers a central topic in data science, optimization.
 The underlying reasoning is the following:  
 The logit function of the probability of a level of the classes is
-linearly dependent on the predictors.
+linearly dependent on the predictors. Why do we need the logit function here?
+Well technically, a linear regression could be fitted with the class as output
+(encoded as 0/1) and the features as predictive variables. However, for some
+values of the predictors, the model would yield outputs below 0 or above 1.
+The logistic function **equation** yields an output between 0 and 1 and
+is therefore well suited to model a probability.
+
 
 
 ## Required parameters
 
-As you probably noticed in the explanation, two principal elements are required:
-* A quantity describing how close two points are, a distance function.
-* A number of neighbors **k** to evaluate new data points. A higher k will take
-more points into account, and therefore points at a higher distance, more likely
-not to be relevant. But less points makes the model more sensible to noise.
-
-The optimal k will also depend on the number of observations at disposal for
-the training. A higher k with few data points will base a decision on
-observations far from the evaluated point.
+As you noticed in the previous explanation, the model takes a vector of
+parameters which correspond to the weights of the different variables.
