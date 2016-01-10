@@ -244,7 +244,8 @@ variable standard deviation. The output is a variable with variance 1.
 
 <div style="text-align: center;" markdown="1"><font size="3">
 <img src="http://www.sciweavers.org/tex2img.php?eq=x_%7Bj%2C%20scal.%7D%20%3D%20%5Cfrac%7Bx_j%7D%7B%5Csigma_j%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0" align="center" border="0" alt="x_{j, scal.} = \frac{x_j}{\sigma_j}" width="92" height="44" />  
-
+</font>
+</div>
 * **Min-Max standardization** of a variable is the division of each value by
 the difference between the maximum and minimum values. The outcome values
 are all contained in the [0,1] interval.  
