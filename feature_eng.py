@@ -56,7 +56,7 @@ plt.grid()
 plt.legend(loc="bottom center")
 plt.show()
 
-# Class dependant polynomial regression
+# Class dependent polynomial regression
 f0 = np.polyfit(d0["skew"],d0["entropy"],deg=2)
 x = np.arange(-15,14,.5)
 f1 = np.polyfit(d1["skew"],d1["entropy"],deg=2)
@@ -67,7 +67,7 @@ plt.plot(d0["skew"],d0["entropy"],'+',alpha=.7,label="Class 0")
 plt.plot(x,f1[0]*x*x+f1[1]*x+f1[2],'-',label="Fitted 1")
 plt.plot(d1["skew"],d1["entropy"],'m+',alpha=.7,label="Class 1")
 
-plt.title("Class dependant fit")
+plt.title("Class dependent fit")
 plt.xlabel("Skewness")
 plt.ylabel("Entropy")
 plt.grid()

@@ -427,7 +427,7 @@ Part I: Preprocessing and exploratory analysis
 
 <hr>
 <div style="text-align: center;" markdown="1"> <font size="0.7">
-<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSEPKb42bzKc9MTwcfNIbXsbSHfIdkyZZhb5mGcXZzusu6SFOUr" width="300"></font></div>
+<img src="http://mbesancon.github.io/BankNotes/images/fake_detection.jpg" width="400px"></font></div>
 
 <div style="text-align: right;" markdown="1"> <font size="0.7">
 [1] </font></div>
@@ -438,6 +438,28 @@ Part I: Preprocessing and exploratory analysis
 </a><br><a href="feature_eng.html">Part II: Feature engineering
 </a><br><a href="model.html">Part III: Model development
 </a></p>
+<h2 id="-table-of-contents-"><strong>Table of Contents</strong></h2>
+<p><em>generated with <a href="http://doctoc.herokuapp.com/">DocToc</a></em></p>
+<ul>
+<li><a href="#">Introduction</a><ul>
+<li><a href="#">Programming choices and libraries</a><ul>
+<li><a href="#">Language and environment</a></li>
+<li><a href="#">Libraries</a></li>
+<li><a href="#">Source files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#">Dataset overview and exploratory analysis</a><ul>
+<li><a href="#">Data parsing</a></li>
+<li><a href="#">Key statistics and overview</a></li>
+<li><a href="#">Kernel Density Estimation for each variable by class</a></li>
+<li><a href="#">Visualizing variable combinations with scatter plots</a></li>
+<li><a href="#">Testing a distribution with Quantile-Quantile plots</a></li>
+<li><a href="#">Non-parametric distribution with boxplots</a></li>
+</ul>
+</li>
+</ul>
 <h1 id="introduction">Introduction</h1>
 <p>One of the amazing things with data science is the ability to tackle
 complex problems involving hidden parallel phenomena interacting with each
@@ -642,7 +664,7 @@ some techniques based on independent features might not be efficient here.  </p>
 <p>Even though some variables are quite far from normal, the hypothesis would be
 acceptable for some model-based learning algorithms using the properties of
 normally-distributed data.</p>
-<h2 id="non-parametric-distribution-with-boxplot">Non-parametric distribution with boxplot</h2>
+<h2 id="non-parametric-distribution-with-boxplots">Non-parametric distribution with boxplots</h2>
 <p>Boxplots represent the data using 25th, 50th and 75th percentiles which can be
 more robust than mean and variance. The pandas library offers a quick method
 and plotting tool to represent boxplots for each class and variable. It

@@ -9,7 +9,7 @@ Part II: Feature engineering: sorting out the valuable information
 </div>  
 
 <div style ="text-align: center;" markdown="1"> <font size="0.7">
-<img src="http://mbesancon.github.io/BankNotes/images/svmexample.jpg" alt="Feature engineering for SVM" style="width: 300px;"/>
+<img src="http://mbesancon.github.io/BankNotes/images/svmexample.png" alt="Feature engineering for SVM" style="width: 400px;"/>
 </font></div>
 <div style ="text-align: right;" markdown="1"> <font size="0.7">
 [1]
@@ -31,6 +31,15 @@ _____
 To follow the following article without any trouble, I would recommend to
 start with the beginning.
 ___
+
+## **Table of Contents**  
+*generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [What is feature engineering?](#)
+- [Correlated variables](#)
+	- [Simple linear and polynomial regression](#)
+	- [Advantages and risks](#)
+- [Feature engineering pipeline](#)
 
 # What is feature engineering?
 

@@ -9,7 +9,7 @@ Part III: Model development
 </div>
 
 <div style ="text-align: center;" markdown="1"> <font size="0.7">
-<img src="http://mbesancon.github.io/BankNotes/images/plot_classifier_comparison_001.png" alt="Bounaries for different models" style="width: 300px;"/>
+<img src="http://mbesancon.github.io/BankNotes/images/plot_classifier_comparison_001.png" alt="Boundaries for different models" style="width: 600px;"/>
 </font></div>
 <div style ="text-align: right;" markdown="1"> <font size="0.7">
 [1]
