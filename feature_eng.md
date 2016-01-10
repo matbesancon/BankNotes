@@ -179,6 +179,7 @@ plt.show()
 
 The model seems to capture more of the variance in our data, which we can
 confirm by plotting the residuals of the class-dependent regression.
+
 ```python
 # residuals of the class-dependent model
 plt.plot(d0["skew"],f0[0]*d0["skew"]*d0["skew"]+f0[1]*d0["skew"]+
@@ -192,9 +193,9 @@ plt.ylabel("Residuals")
 plt.savefig("res_class_dep.png")
 plt.show()
 ```
-
+<div style="text-align: center;" markdown="1"><font size="3">
 <img src="http://mbesancon.github.io/BankNotes/figures/res_class_dep.png" alt="Residuals of the class-dependent polynomial regression" style="width: 400px;"/>  
-
+</font></div>
 We have a proper working model, with just one problem: **we used
 the class to predict the entropy** whereas our classification
 objective is to proceed the other way around. Since we noticed
@@ -203,7 +204,8 @@ the distance to the first model and the distance to the second
 model, which will be noted "d", can be computed as:
 
 <div style="text-align: center;" markdown="1"><font size="3">
-<img src="http://www.sciweavers.org/tex2img.php?eq=d_i%20%3D%20%7C%7B%28y_i%20-%20f_0%28x_i%29%7C%20-%20%7Cy_i%20-%20f_1%28x_i%29%7C&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0" align="center" border="0" alt="d_i = |{(y_i - f_0(x_i)| - |y_i - f_1(x_i)|" width="246" height="19" />
+<img src="http://bit.ly/1SaWPlD" align="center" border="0" alt="d_i = |{(y_i - f_0(x_i)| - |y_i - f_1(x_i)|" width="246" height="19" />
+</font>
 </div>
 
 ```python
@@ -266,7 +268,7 @@ the ability to classify the data points from a variable
 is usually not proportional to the variable variance.  
 
 Furthermore, all people with notions in physics and calculus
-would find it akward to compute a distance from heterogeneous
+would find it awkward to compute a distance from heterogeneous
 variables (which would have different units and meaning).
 
 However, scaling might increase the weight of variables carrying mostly
