@@ -9,7 +9,7 @@ Part II: Feature engineering: sorting out the valuable information
 </div>  
 
 <div style ="text-align: center;" markdown="1"> <font size="0.7">
-<img src="http://www.cg.cs.tu-bs.de/static/teaching/seminars/ss13/CG/webpages/SoerenPetersen/images/svmexample.png" alt="Feature engineering for SVM" style="width: 300px;"/>
+<img src="http://mbesancon.github.io/BankNotes/images/svmexample.jpg" alt="Feature engineering for SVM" style="width: 300px;"/>
 </font></div>
 <div style ="text-align: right;" markdown="1"> <font size="0.7">
 [1]

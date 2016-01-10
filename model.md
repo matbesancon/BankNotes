@@ -8,6 +8,14 @@ Part III: Model development
 </font>
 </div>
 
+<div style ="text-align: center;" markdown="1"> <font size="0.7">
+<img src="http://mbesancon.github.io/BankNotes/images/plot_classifier_comparison_001.png" alt="Bounaries for different models" style="width: 300px;"/>
+</font></div>
+<div style ="text-align: right;" markdown="1"> <font size="0.7">
+[1]
+</font>  
+</div>
+
 _____
 
 
@@ -75,7 +83,7 @@ The underlying reasoning is the following:
 The logit function of the probability of a level of the classes is
 linearly dependent on the predictors. This can be written as:
 <div style="text-align: center;" markdown="1"><font size="3">
-<img src="http://bit.ly/1mNGxSz" align="center" border="0" alt="x_{j, stand} = \frac{x_j}{max(x_j)-min(x_j)}" width="232" height="44" />  
+<img src="http://bit.ly/1ZeK6O0" align="center" border="0" alt="log \left( \frac{p}{1-p} \right) = \beta_0 + \beta_1\cdot x_1 + \beta_2\cdot x_2 ..." width="304" height="47" />
 </font>
 </div>
 
@@ -117,3 +125,180 @@ the transition.
 "Evolution of the model with different coefficient values" style="width: 600px;"/>
 </font>
 </div>
+
+## Learning process
+
+Unlike linear regression, the learning process for logistic regression is not
+a straight-forward computation of the parameters through simple linear algebra
+operations. The criterion to optimize is the likelihood, or equivalently, the
+log-likelihood of the parameters:
+L = p
+The best parameters in the sense of the log-likelihood are therefore found
+when its gradient is null. For the logistic regression problem, there is only
+one critical point, which is also the only maximum of the log-likelihood.
+This is why the simplest technique for unconstrained optimization, called
+**gradient descent** can be used here.
+
+## Decision boundaries and 2D-representation
+
+A **decision region** is the subset of the features space within which the
+decision taken by the model is identical. A **decision boundary** is the
+subset of the space where the decision "switches". For most algorithms,
+the decision taken on the boundary is arbitrary. The possible boundary
+shapes are a key characteristic of machine learning algorithms.  
+
+In our case, logistic regression models the logit of the probability,
+which is strictly monotonous with the probability as linearly
+proportional to the predictors. It can be deduced that the decision
+boundary will be a straight line separating the two classes.
+This can be visualized using two features of the data, "vari" and
+"k_resid":
+
+```python
+# variables k_resid, vari
+# learning the weights
+w = learn_weights(data1.iloc[:,(0,1,3)])
+
+# building the mesh
+xmesh, ymesh = np.meshgrid(np.arange(data1["vari"].min()-.5,data1["vari"].max()+.5,.01),\
+    np.arange(data1["k_resid"].min()-.5,data1["k_resid"].max()+.5,.01))
+
+pmap = pd.DataFrame(np.c_[np.ones((len(xmesh.ravel()),)),xmesh.ravel(),ymesh.ravel()])
+p = np.array([])
+for line in pmap.values:
+    p = np.append(p,(prob_log(line,w)))
+
+p = p.reshape(xmesh.shape)
+
+plt.contourf(xmesh, ymesh, np.power(p,8), cmap= 'RdBu',alpha=.5)
+plt.plot(data1[data1["class"]==1]["vari"],data1[data1["class"]==1]["k_resid"],'+',label='Class 0')
+plt.plot(data1[data1["class"]==0]["vari"],data1[data1["class"]==0]["k_resid"],'r+',label='Class 1')
+plt.legend(loc="upper right")
+plt.title('2-dimension logistic regression result')
+plt.xlabel('vari')
+plt.ylabel('k_resid')
+plt.grid()
+plt.show()
+```
+
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://mbesancon.github.io/BankNotes/figures/2dimensions.png" alt=
+"Decision boundary for two dimensions" style="width: 600px;"/>
+</font>
+</div>
+
+# Implementation
+
+## Elementary functions
+
+Modularizing the code increases the readability, we define the
+implementations of two mathematical functions:
+```python
+def prob_log(x,w):
+    """
+    probability of an observation belonging
+    to the class "one"
+    given the predictors x and weights w
+    """
+    return np.exp(np.dot(x,w))/(np.exp(np.dot(x,w))+1)
+def grad_log_like(X, y, w):
+    """
+    computes the gradient of the log-likelihood from predictors X,
+    output y and weights w
+    """
+    return np.dot(X.T,y- np.apply_along_axis(lambda x: prob_log(x,w),1,X)).reshape((len(w),))
+```
+
+## Learning algorithm
+A function computes the optimal weights from iterations to find the maximal
+log-likelihood of the parameters, using the two previous functions.
+
+```python
+def learn_weights(df):
+    """
+    computes and updates the weights until convergence
+    given the features and outcome in a data frame
+    """
+    X = np.c_[np.ones(len(df)),np.array(df.iloc[:,:df.shape[1]-1])]
+    y = np.array(df["class"])
+    niter = 0
+    error = .0001
+    w = np.zeros((df.shape[1],))
+    w0 = w+5
+    alpha = .3
+    while sum(abs(w0-w))>error and niter < 10000:
+        niter+=1
+        w0 = w
+        w = w + alpha*min(.1,(3/(niter**.5+1)))*(grad_log_like(X,y,w))
+    if niter==10000:
+        print("Maximum iterations reached")
+    return w
+```
+
+## Prediction
+
+Once the weights have been learnt, new probabilities can be predicted from
+explanatory variables.
+
+```python
+def predict_outcome(df,w):
+    """
+    takes in a test data set and computed weights
+    returns a vector of predicted output, the confusion matrix
+    and the number of misclassifications
+    """
+    confusion_matrix = np.zeros((2,2))
+    p = []
+    for line in df.values:
+        x = np.append(1,line[0:3])
+        p.append(prob_log(x,w))
+        if (prob_log(x,w)>.5) and line[3]:
+            confusion_matrix[1,1]+=1
+        elif (prob_log(x,w)<.5) and line[3]:
+            confusion_matrix[1,0]+=1
+        elif (prob_log(x,w)<.5) and not line[3]:
+            confusion_matrix[0,0]+=1
+        else:
+            confusion_matrix[0,1]+=1
+    return p, confusion_matrix, len(df)-sum(np.diag(confusion_matrix))
+```
+
+## Cross-validated evaluation
+
+Learning weights on a training subset and getting the error on an other subset
+will allow us to estimate the real error rate of our prediction. 100 cross
+validations are performed and for each of them, we add the error to a list.
+
+```python
+error = []
+weights = []
+for test in range(100):
+    trainIndex = np.random.rand(len(data0)) < 0.85
+    data_train = data1[trainIndex]
+    data_test = data1[~trainIndex]
+    weights.append(learn_weights(data_train))
+    error.append(predict_outcome(data_test,weights[-1])[2])
+```
+
+The following results were obtained:
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://mbesancon.github.io/BankNotes/figures/GLM_errors.png" alt=
+"Evolution of the model with different coefficient values" style="width: 400px;"/>
+</font>
+</div>
+
+The model produces on average 2.66 misclassifications for
+100 evaluated banknotes. Note that on each test, 85% of the observations
+went into the training set, which is arbitrary. However, too few
+training points will yield inaccurate models and higher error rates.
+
+___
+<font size="0.7">
+[1] Image source: scikit-learnorg </font></div>
+
+
+Get in touch at mathieu(dot)besancon(at)gmail.com, on
+my [personal website](mathieu-besancon.strikingly.com)
+[Github](github.com/mbesancon), [Quora](https://www.quora.com/profile/Mathieu-Besançon),
+[Linkedin](https://fr.linkedin.com/in/mbesancon/en)
+or [Twitter](https://twitter.com/MathieuBesancon)

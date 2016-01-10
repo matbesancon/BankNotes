@@ -10,7 +10,7 @@ Part I: Preprocessing and exploratory analysis
 
 ___
 <div style ="text-align: center;" markdown="1"> <font size="0.7">
-<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSEPKb42bzKc9MTwcfNIbXsbSHfIdkyZZhb5mGcXZzusu6SFOUr" width="300" /></div>
+<img src="http://mbesancon.github.io/BankNotes/images/fake_detection.jpg" width="300" /></div>
 
 <div style ="text-align: right;" markdown="1"> <font size="0.7">
 [1] </font></div>
@@ -24,9 +24,6 @@ ___
 ](feature_eng.html)  
 [Part III: Model development
 ](model.html)
-
-* auto-gen TOC:
-{:toc}
 
 # Introduction
 
@@ -106,10 +103,11 @@ import urllib3
 
 The source files will be available on the corresponding Github repository.
 These include:
-* preprocess.py to load the data and librairies
-* exploratory.py for preliminary vizualization
+* preprocess.py to load the data and libraries
+* exploratory.py for preliminary visualization
 * feature_eng.py where the data will be transformed to boost the model performance
-* model.py where we will build our models and evaluate them
+* model_GLM.py where we define key functions and build our model
+* model.py where we will visualize characteristics of the model
 
 # Dataset overview and exploratory analysis
 
