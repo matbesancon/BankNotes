@@ -22,11 +22,11 @@ _____
 ## Articles
 
 [Part I: Preprocessing and exploratory analysis
-](mbesancon.github.io/BankNotes/article.html)  
+](article.html)  
 [Part II: Feature engineering
-](mbesancon.github.io/BankNotes/feature_eng.html)  
+](feature_eng.html)  
 [Part III: Model development
-](mbesancon.github.io/BankNotes/model.html)
+](model.html)
 
 To follow the following article without any trouble, I would recommend to
 start with the beginning.
@@ -251,12 +251,13 @@ variable standard deviation. The output is a variable with variance 1.
 
 * **Min-Max standardization** of a variable is the division of each value by
 the difference between the maximum and minimum values. The outcome values
-are all contained in the [0,1] interval.  
+are all contained in the interval [0,1].  
 
 <div style="text-align: center;" markdown="1"><font size="3">
 <img src="http://bit.ly/1mNGxSz" align="center" border="0" alt="x_{j, stand} = \frac{x_j}{max(x_j)-min(x_j)}" width="232" height="44" />  
-</font>    
-</div>  
+</font>
+</div>
+
 Other standardization operations exist, but those are the
 most common because of the properties highlighted.
 

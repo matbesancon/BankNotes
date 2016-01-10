@@ -14,11 +14,11 @@ _____
 ## Articles
 
 [Part I: Preprocessing and exploratory analysis
-](mbesancon.github.io/BankNotes/article.html)  
+](article.html)  
 [Part II: Feature engineering
-](mbesancon.github.io/BankNotes/feature_eng.html)   
+](feature_eng.html)  
 [Part III: Model development
-](mbesancon.github.io/BankNotes/model.html)
+](model.html)
 
 To follow the following article without any trouble, I would recommend to
 start with the beginning.
