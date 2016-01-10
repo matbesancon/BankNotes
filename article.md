@@ -25,6 +25,22 @@ ___
 [Part III: Model development
 ](model.html)
 
+## **Table of Contents**  
+*generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [Introduction](#)
+	- [Programming choices and libraries](#)
+		- [Language and environment](#)
+		- [Libraries](#)
+		- [Source files](#)
+- [Dataset overview and exploratory analysis](#)
+	- [Data parsing](#)
+	- [Key statistics and overview](#)
+	- [Kernel Density Estimation for each variable by class](#)
+	- [Visualizing variable combinations with scatter plots](#)
+	- [Testing a distribution with Quantile-Quantile plots](#)
+	- [Non-parametric distribution with boxplots](#)
+
 # Introduction
 
 One of the amazing things with data science is the ability to tackle
@@ -254,7 +270,7 @@ Even though some variables are quite far from normal, the hypothesis would be
 acceptable for some model-based learning algorithms using the properties of
 normally-distributed data.
 
-## Non-parametric distribution with boxplot
+## Non-parametric distribution with boxplots
 
 Boxplots represent the data using 25th, 50th and 75th percentiles which can be
 more robust than mean and variance. The pandas library offers a quick method

@@ -32,7 +32,7 @@ To follow the following article without any trouble, I would recommend to
 start with the beginning.
 ___
 
-## What is feature engineering?
+# What is feature engineering?
 
 It could be describe as the transformation of raw data to produce
 a model input which will have better performance. The *features* are
@@ -48,9 +48,9 @@ engineering was already performed on our data, since banknotes were
 registered as images taken from a digital camera, and we only received
 5 features for each image.
 
-## Correlated variables
+# Correlated variables
 
-### Simple linear and polynomial regression
+## Simple linear and polynomial regression
 We noticed some strong dependencies between variables thanks to the
 scatter plot. Those can deter the performance and robustness of
 several machine learning models. Skewness and kurtosis seem to be
@@ -133,7 +133,7 @@ plt.show()
 The data is now much more uncorrelated, so the feature of interest is the
 residual of the regression which will replace the kurtosis in the data.
 
-### Class-dependent regression
+## Class-dependent regression
 
 We can try and repeat the same process for the entropy and skewness, which
 also seem to be related to each other.
@@ -174,7 +174,7 @@ are not equally distributed on both side of the curve. There is another
 pattern, which is class-dependent, so two polynomial curves should be fitted:
 
 ```python
-# Class dependant polynomial regression
+# Class dependent polynomial regression
 f0 = np.polyfit(d0["skew"],d0["entropy"],deg=2)
 x = np.arange(-15,14,.5)
 f1 = np.polyfit(d1["skew"],d1["entropy"],deg=2)
@@ -185,7 +185,7 @@ plt.plot(d0["skew"],d0["entropy"],'+',alpha=.7,label="Class 0")
 plt.plot(x,f1[0]*x*x+f1[1]*x+f1[2],'-',label="Fitted 1")
 plt.plot(d1["skew"],d1["entropy"],'m+',alpha=.7,label="Class 1")
 
-plt.title("Class dependant fit")
+plt.title("Class dependent fit")
 plt.xlabel("Skewness")
 plt.ylabel("Entropy")
 plt.grid()
@@ -255,9 +255,9 @@ variable seems correlated to the skewness. The latter could have become
 unnecessary for our prediction, so we choose to eliminate it from
 the features and take the risk of an information loss.
 
-## Variable scaling
+# Variable scaling
 
-### Common scaling techniques
+## Common scaling techniques
 
 Very different spreads could be noticed among variables during the exploratory
 part. This can lead to a bias in the distance between two points. A possible
@@ -282,7 +282,7 @@ are all contained in the interval [0,1].
 Other standardization operations exist, but those are the
 most common because of the properties highlighted.
 
-### Advantages and risks
+## Advantages and risks
 
 Scaling variables may avoid the distance between data points
 to be over-influenced by high-variance variables, because
@@ -301,7 +301,7 @@ For this case, the second risk seems very low: all variables seem to
 carry information, which we could observe because of the low number of
 variables.
 
-## Feature engineering pipeline
+# Feature engineering pipeline
 
 ```python  
 # Fitting a polynomial model between the skew and kurtosis

@@ -32,6 +32,23 @@ To follow the following article without any trouble, I would recommend to
 start with the beginning.
 ___
 
+## **Table of Contents**  
+*generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [How does predictive modeling work](#)
+	- [Keep the terminology in mind](#)
+	- [How does classification work?](#)
+	- [Independent evaluation](#)
+- [Our model: logistic regression](#)
+	- [Required parameters](#)
+	- [Learning process](#)
+	- [Decision boundaries and 2D-representation](#)
+- [Implementation](#)
+	- [Elementary functions](#)
+	- [Learning algorithm](#)
+	- [Prediction](#)
+	- [Cross-validated evaluation](#)
+
 # How does predictive modeling work
 
 ## Keep the terminology in mind
