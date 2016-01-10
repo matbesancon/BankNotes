@@ -18,8 +18,8 @@ Created on Tue Dec 22 14:20:02 2015
 # Loading librairies
 import numpy as np
 import pandas as pd
-import ggplot
 from matplotlib import pyplot as plt
+import ggplot
 import scipy.stats as stats
 import scipy.spatial.distance
 from collections import Counter

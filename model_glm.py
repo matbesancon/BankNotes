@@ -3,12 +3,12 @@
 Created on Thu Jan  7 10:06:24 2016
 
 @author: MATHIEU
-@description: Buidling a GLM model
+@description: Buidling a GL model
 """
 
 def prob_log(x,w):
     """
-    probability ofan observation belonging 
+    probability of an observation belonging 
     to the class "one"
     given the predictors x and weights w
     """
@@ -24,7 +24,7 @@ def grad_log_like(X, y, w):
 def learn_weights(df):
     """
     computes and updates the weights until convergence
-    given the 
+    given the features and outcome in a data frame
     """
     X = np.c_[np.ones(len(df)),np.array(df.iloc[:,:df.shape[1]-1])]
     y = np.array(df["class"])
@@ -51,7 +51,7 @@ def predict_outcome(df,w):
     confusion_matrix = np.zeros((2,2))
     p = []
     for line in df.values:
-        x = np.append(1,line[0:3])
+        x = np.append(1,line[0:df.shape[1]-1])
         p.append(prob_log(x,w))
         if (prob_log(x,w)>.5) and line[3]:
             confusion_matrix[1,1]+=1
@@ -70,7 +70,7 @@ for test in range(100):
     data_train = data1[trainIndex]
     data_test = data1[~trainIndex]
     weights.append(learn_weights(data_train))
-    error.append(predict_outcome(data_test,w)[2])
+    error.append(predict_outcome(data_test,weights[-1])[2])
     
 plt.grid()
 plt.plot(error)
@@ -83,4 +83,7 @@ plt.show()
 
 # np.mean(error)/len(data1)
 # 0.0035349854227405245
+
+
+
 

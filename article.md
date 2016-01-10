@@ -10,7 +10,7 @@ Part I: Preprocessing and exploratory analysis
 
 ___
 <div style ="text-align: center;" markdown="1"> <font size="0.7">
-<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSEPKb42bzKc9MTwcfNIbXsbSHfIdkyZZhb5mGcXZzusu6SFOUr" width="300" /></div>
+<img src="http://mbesancon.github.io/BankNotes/images/fake_detection.jpg" width="300" /></div>
 
 <div style ="text-align: right;" markdown="1"> <font size="0.7">
 [1] </font></div>
@@ -24,6 +24,22 @@ ___
 ](feature_eng.html)  
 [Part III: Model development
 ](model.html)
+
+## **Table of Contents**  
+*generated with [DocToc](http://doctoc.herokuapp.com/)*
+
+- [Introduction](#)
+	- [Programming choices and libraries](#)
+		- [Language and environment](#)
+		- [Libraries](#)
+		- [Source files](#)
+- [Dataset overview and exploratory analysis](#)
+	- [Data parsing](#)
+	- [Key statistics and overview](#)
+	- [Kernel Density Estimation for each variable by class](#)
+	- [Visualizing variable combinations with scatter plots](#)
+	- [Testing a distribution with Quantile-Quantile plots](#)
+	- [Non-parametric distribution with boxplots](#)
 
 # Introduction
 
@@ -103,10 +119,11 @@ import urllib3
 
 The source files will be available on the corresponding Github repository.
 These include:
-* preprocess.py to load the data and librairies
-* exploratory.py for preliminary vizualization
+* preprocess.py to load the data and libraries
+* exploratory.py for preliminary visualization
 * feature_eng.py where the data will be transformed to boost the model performance
-* model.py where we will build our models and evaluate them
+* model_GLM.py where we define key functions and build our model
+* model.py where we will visualize characteristics of the model
 
 # Dataset overview and exploratory analysis
 
@@ -181,6 +198,7 @@ for v in data0.columns[:4]:
         ggplot.labs(title='KDE '+v,x=v,y="KDE"),
         'KDE_'+v+'.png',width=18,height=12)
 ```
+<div style ="text-align: center;" markdown="1"> <font size="0.7">
 <img src="http://mbesancon.github.io/BankNotes/figures/KDE_entropy.png"
 width="500" />
 <img src="http://mbesancon.github.io/BankNotes/figures/KDE_Vari.png"
@@ -189,7 +207,7 @@ width="500" />
 width="500" />
 <img src="http://mbesancon.github.io/BankNotes/figures/KDE_kurtosis.png"
 width="500" />
-
+</font></div>
 
 Using this first simple visualization technique, we can deduce that the
 variance may be much more efficient to separate the two banknotes
@@ -241,16 +259,18 @@ for v in data0.columns[:4]:
     plt.show()
 ```
 
+<div style ="text-align: center;" markdown="1"> <font size="0.7">
 <img src="http://mbesancon.github.io/BankNotes/figures/qqplot_entropy.png" alt="QQplot entropy" style="width: 800px;"/>
 <img src="http://mbesancon.github.io/BankNotes/figures/qqplot_skew.png" alt="QQplot skewness" style="width: 800px;"/>
 <img src="http://mbesancon.github.io/BankNotes/figures/qqplot_vari.png" alt="QQplot variance" style="width: 800px;"/>
 <img src="http://mbesancon.github.io/BankNotes/figures/qqplot_kurtosis.png" alt="QQplot kurtosis" style="width: 800px;"/>
+</font></div>
 
 Even though some variables are quite far from normal, the hypothesis would be
 acceptable for some model-based learning algorithms using the properties of
 normally-distributed data.
 
-## Non-parametric distribution with boxplot
+## Non-parametric distribution with boxplots
 
 Boxplots represent the data using 25th, 50th and 75th percentiles which can be
 more robust than mean and variance. The pandas library offers a quick method
@@ -260,8 +280,10 @@ highlights the differences in the spread of the data.
 ```python
 data0.groupby("class").boxplot(figsize=(9,5))
 ```
+<div style ="text-align: center;" markdown="1"> <font size="0.7">
 <img src="http://mbesancon.github.io/BankNotes/figures/Boxplot.png" alt=
 "Boxplot representation" style="width: 800px;"/>
+</font></div>
 
 This will be useful in the next part, when the data will be transformed to
 enhance the performance and robustness of predictive models.   
