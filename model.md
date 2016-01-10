@@ -67,21 +67,53 @@ data, this is called **cross validation**.
 
 # Our model: logistic regression
 
-Even though this is often not the most efficient algorithm on real data,
-it is visually easy to understand and simple to implement from scratch.
+This model was chosen mostly because
+it is visually and intuitively easy to understand and simple to
+implement from scratch.
 Plus, it covers a central topic in data science, optimization.
 The underlying reasoning is the following:  
 The logit function of the probability of a level of the classes is
-linearly dependent on the predictors. Why do we need the logit function here?
+linearly dependent on the predictors. This can be written as:
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://bit.ly/1mNGxSz" align="center" border="0" alt="x_{j, stand} = \frac{x_j}{max(x_j)-min(x_j)}" width="232" height="44" />  
+</font>
+</div>
+
+Why do we need the logit function here?
 Well technically, a linear regression could be fitted with the class as output
 (encoded as 0/1) and the features as predictive variables. However, for some
 values of the predictors, the model would yield outputs below 0 or above 1.
 The logistic function **equation** yields an output between 0 and 1 and
 is therefore well suited to model a probability.
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://mbesancon.github.io/BankNotes/figures/linear_binary.png" alt=
+"Linear regression on binary output" style="width: 400px;"/>
+</font>
+</div>
 
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://mbesancon.github.io/BankNotes/figures/logistic_binary.png" alt=
+"Logistic regression on binary output" style="width: 400px;"/>
+</font>
+</div>
 
+You can noticed a decision boundary, which is the limit between the
+region where the model yields a prediction "0" and a prediction "1".
+The output of the model is a probability of the class "1", the forged
+bank notes, so the decision boundary can be put at p=0.5, which would be
+our "best guess" for the transition between the two regions.  
 
 ## Required parameters
 
 As you noticed in the previous explanation, the model takes a vector of
 parameters which correspond to the weights of the different variables.
+The intercept \beta_0 places the location of the point at which p=0.5,
+it shifts the curve to the right or the left.
+The coefficients of the variables correspond to the sharpness of
+the transition.
+
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://mbesancon.github.io/BankNotes/figures/logistic_coeff.png" alt=
+"Evolution of the model with different coefficient values" style="width: 600px;"/>
+</font>
+</div>

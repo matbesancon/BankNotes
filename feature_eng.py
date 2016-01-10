@@ -7,13 +7,16 @@ Created on Sun Dec 27 18:23:27 2015
 
 ggplot.ggplot(ggplot.aes(x='skew',y='kurtosis'),data=data0)+ \
     ggplot.geom_point() + ggplot.geom_smooth(method='lm')
-    
+plt.show()
+
 a, b = stats.linregress(data0["skew"],data0["kurtosis"])[:2]
 plt.plot(data0["skew"],data0["kurtosis"],'+')
 plt.plot( np.array([-15,15]) ,b+a*np.array([-15,15]),'r')
 plt.title('Simple linear regression')
 plt.xlabel('Skewness')
 plt.ylabel('Kurtosis')
+plt.savefig("figures/linear_reg.png")
+plt.show()
 
 a, b, c = np.polyfit(data0["skew"],data0["kurtosis"],deg=2)
 plt.plot(data0["skew"],data0["kurtosis"],'+')
@@ -21,10 +24,7 @@ plt.plot(np.arange(-15,15,.5) ,c+b*np.arange(-15,15,.5)+a*np.arange(-15,15,.5)*n
 plt.title('2nd degree polynomial regression')
 plt.xlabel('Skewness')
 plt.ylabel('Kurtosis')
-
-data1 = data0.copy()
-data1.columns = ['vari', 'skew', 'k_resid', 'entropy', 'class']
-data1["k_resid"] = data0["kurtosis"] - (a*(data0["skew"])**2 + b*data0["skew"] + c)
+plt.show()
 
 d0 = data0[data0["class"]==0]
 d1 = data0[data0["class"]==1]
@@ -43,6 +43,7 @@ plt.xlabel("Skewness")
 plt.ylabel("Entropy")
 plt.grid()
 plt.legend()
+plt.show()
 
 ft = np.polyfit(data0["skew"],data0["entropy"],deg=2)
 plt.plot(d0["skew"],d0["entropy"],'+',label="Class 0")
@@ -53,7 +54,7 @@ plt.xlabel("Skewness")
 plt.ylabel("Entropy")
 plt.grid()
 plt.legend(loc="bottom center")
-
+plt.show()
 
 # Class dependant polynomial regression
 f0 = np.polyfit(d0["skew"],d0["entropy"],deg=2)
@@ -124,5 +125,11 @@ data1["d"] = abs(data0["entropy"]-f0[0]*data0["skew"]*data0["skew"]-f0[1]*data0[
 data1 = data1.drop("skew",1)
 # data normalization
 data1.iloc[:,:3] = data1.iloc[:,:3]/np.sqrt(np.var(data1.iloc[:,:3]))
+
+col = list('r' if i==1 else 'b' for i in data1["class"])    
+pd.tools.plotting.scatter_matrix(data1.ix[:,:3],figsize=(6,3),
+                                 color=col,diagonal='kde')
+plt.show()
+
 
 

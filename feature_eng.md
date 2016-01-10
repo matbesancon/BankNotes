@@ -75,8 +75,11 @@ between 1 and 2. The points with a low skewness are under-represented in the
 model and do not follow the trend of the regression line. A robust regression
 technique could correct this bias, but a polynomial regression is the most
 straight-forward method to capture a higher part of the variance here.
-The second-degree polynomial model can be written as:  
-<img src="http://www.sciweavers.org/tex2img.php?eq=a%5Ccdot%20x%5E2%20%2B%20b%5Ccdot%20x%20%2B%20c&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0" align="center" border="0" alt="a\cdot x^2 + b\cdot x + c" width="129" height="19" />
+The second-degree polynomial model can be written as:
+<div style ="text-align: center;" markdown="1"> <font size="0.7">
+<img src="http://bit.ly/1K6AIoI" align="center" border="0" alt="a\cdot x^2 + b\cdot x + c" width="129" height="19" />  
+</font>  
+</div>
 and can be found through least-square model in numpy:
 ```python
 a, b, c = np.polyfit(data0["skew"],data0["kurtosis"],deg=2)
@@ -87,26 +90,33 @@ plt.title('2nd degree polynomial regression')
 plt.xlabel('Skewness')
 plt.ylabel('Kurtosis')
 ```
+<div style ="text-align: center;" markdown="1"> <font size="0.7">
 <img src="http://mbesancon.github.io/BankNotes/figures/poly_reg.png" alt="Polynomial regression" style="width: 600px;"/>
-
+</font></div>
 A polynomial regression yields a much better output with balanced residuals.
 The p-value for all coefficients is below the 1% confidence criterion.
 One strong drawback can however be noticed: the polynomial model predicts an
 increase in the kurtosis for skewness superior to 2, but there is no evidence
 for this statement in our data, so the model could lead to stronger errors.  
+<p>
+</p>
 
 The regression does not capture all the variance (and does not explain all
 underlying phenomena) of the Kurtosis, so a transformed variable has to be kept,
 which should be independent from the skewness. The most obvious value is the
-residual of the polynomial regression we performed.<div style="text-align: center;" markdown="1"><font size="3"> <img src="http://www.sciweavers.org/tex2img.php?eq=e_i%20%3D%20%5Chat%7By%7D_i%20-%20y_i%20%3D%20a%5Ccdot%20x_i%5E2%20%2B%20b%5Ccdot%20x_i%20%2B%20c%20-%20y_i%20&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0" align="center" border="0" alt="e_i = \hat{y}_i - y_i = a\cdot x_i^2 + b\cdot x_i + c - y_i " width="276" height="26" />
-</div>  
+residual of the polynomial regression we performed.
+
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://bit.ly/1K6B7aQ" align="center" border="0" alt="e_i = \hat{y}_i - y_i = a\cdot x_i^2 + b\cdot x_i + c - y_i" width="276" height="26" />
+</font></div>  
+
 We can represent this residual versus the explanatory variable
-to be assured that:
+to be assured that:  
 * The residuals are centered around 0
 * The variance of the residuals is approximately constant with the skewness
 * There are still patterns in the Kurtosis: the residuals are not just noise
 
-```
+```python
 p0 = plt.scatter(d0['skew'],c+b*d0["skew"] +a*d0["skew"]*d0["skew"]-d0["kurtosis"],c='b',marker='+',label="0")
 p0 = plt.scatter(d1['skew'],c+b*d1["skew"] +a*d1["skew"]*d1["skew"]-d1["kurtosis"],c='r',marker='+',label="1")
 plt.title('Explanatory variable vs Regression residuals')
@@ -115,7 +125,10 @@ plt.ylabel('Residuals')
 plt.legend(["0","1"])
 plt.show()
 ```
+
+<div style="text-align: center;" markdown="1"><font size="3">
 <img src="http://mbesancon.github.io/BankNotes/figures/resid_reg.png" alt="Residuals of the regression" style="width: 400px;"/>
+</font></div>
 
 The data is now much more uncorrelated, so the feature of interest is the
 residual of the regression which will replace the kurtosis in the data.
@@ -133,7 +146,10 @@ plt.grid()
 plt.legend()
 plt.show()
 ```
+<div style="text-align: center;" markdown="1"><font size="3">
 <img src="http://mbesancon.github.io/BankNotes/figures/skew_entropy.png" alt="Skewness-Entropy" style="width: 400px;"/>  
+</font></div>
+
 We can try can fit a 2nd-degree polynomial function:
 ```python
 ft = np.polyfit(data0["skew"],data0["entropy"],deg=2)
@@ -149,7 +165,9 @@ plt.grid()
 plt.legend(loc="bottom center")
 plt.show()
 ```
-<img src="http://mbesancon.github.io/BankNotes/figures/fit1_entropy.png" alt="Polynomial regression on entropy" style="width: 400px;"/>  
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://mbesancon.github.io/BankNotes/figures/fit1_entropy.png" alt="Polynomial regression on entropy" style="width: 400px;"/>
+</font></div>  
 
 However, it seems that the model does not fit well our data and that the points
 are not equally distributed on both side of the curve. There is another
@@ -175,8 +193,9 @@ plt.legend(loc='bottom center')
 plt.savefig("class_depend.png")
 plt.show()
 ```
+<div style="text-align: center;" markdown="1"><font size="3">
 <img src="http://mbesancon.github.io/BankNotes/figures/class_depend.png" alt="Class-dependent polynomial regression" style="width: 400px;"/>  
-
+</font></div>
 The model seems to capture more of the variance in our data, which we can
 confirm by plotting the residuals of the class-dependent regression.
 
@@ -225,7 +244,9 @@ plt.ylabel("d")
 plt.show()
 ```
 
+<div style="text-align: center;" markdown="1"><font size="3">
 <img src="http://mbesancon.github.io/BankNotes/figures/d_skew.png" alt="d vs skewness by class" style="width: 400px;"/>   
+</font></div>
 
 A positive "d" value indicates that the entropy of the observation
 is closer to the model fitted on the class 1, this seems to be a
@@ -312,7 +333,8 @@ data1.iloc[:,:4] = data1.iloc[:,:4]/np.sqrt(np.var(data1.iloc[:,:4]))
 
 `data1` can now be used in the next step which will consist in the
 implementation of a basic machine learning algorithm. This is the key
-part in an analysis-oriented data science project, and I hope to see you there.
+part in an analysis-oriented data science project, and I hope to see you
+[there](model.html).
 ___
 
 Get in touch at mathieu(dot)besancon(at)gmail.com, on

@@ -25,6 +25,9 @@ ___
 [Part III: Model development
 ](model.html)
 
+* auto-gen TOC:
+{:toc}
+
 # Introduction
 
 One of the amazing things with data science is the ability to tackle
@@ -181,6 +184,7 @@ for v in data0.columns[:4]:
         ggplot.labs(title='KDE '+v,x=v,y="KDE"),
         'KDE_'+v+'.png',width=18,height=12)
 ```
+<div style ="text-align: center;" markdown="1"> <font size="0.7">
 <img src="http://mbesancon.github.io/BankNotes/figures/KDE_entropy.png"
 width="500" />
 <img src="http://mbesancon.github.io/BankNotes/figures/KDE_Vari.png"
@@ -189,7 +193,7 @@ width="500" />
 width="500" />
 <img src="http://mbesancon.github.io/BankNotes/figures/KDE_kurtosis.png"
 width="500" />
-
+</font></div>
 
 Using this first simple visualization technique, we can deduce that the
 variance may be much more efficient to separate the two banknotes
@@ -241,10 +245,12 @@ for v in data0.columns[:4]:
     plt.show()
 ```
 
+<div style ="text-align: center;" markdown="1"> <font size="0.7">
 <img src="http://mbesancon.github.io/BankNotes/figures/qqplot_entropy.png" alt="QQplot entropy" style="width: 800px;"/>
 <img src="http://mbesancon.github.io/BankNotes/figures/qqplot_skew.png" alt="QQplot skewness" style="width: 800px;"/>
 <img src="http://mbesancon.github.io/BankNotes/figures/qqplot_vari.png" alt="QQplot variance" style="width: 800px;"/>
 <img src="http://mbesancon.github.io/BankNotes/figures/qqplot_kurtosis.png" alt="QQplot kurtosis" style="width: 800px;"/>
+</font></div>
 
 Even though some variables are quite far from normal, the hypothesis would be
 acceptable for some model-based learning algorithms using the properties of
@@ -260,8 +266,10 @@ highlights the differences in the spread of the data.
 ```python
 data0.groupby("class").boxplot(figsize=(9,5))
 ```
+<div style ="text-align: center;" markdown="1"> <font size="0.7">
 <img src="http://mbesancon.github.io/BankNotes/figures/Boxplot.png" alt=
 "Boxplot representation" style="width: 800px;"/>
+</font></div>
 
 This will be useful in the next part, when the data will be transformed to
 enhance the performance and robustness of predictive models.   
