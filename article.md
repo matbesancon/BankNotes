@@ -10,7 +10,7 @@ Part I: Preprocessing and exploratory analysis
 
 ___
 <div style ="text-align: center;" markdown="1"> <font size="0.7">
-<img src="http://mbesancon.github.io/BankNotes/images/fake_detection.jpg" width="300" /></div>
+<img src="http://mbesancon.github.io/BankNotes/images/fake_detection.jpg" width="400px" /></div>
 
 <div style ="text-align: right;" markdown="1"> <font size="0.7">
 [1] </font></div>
