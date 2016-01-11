@@ -225,7 +225,7 @@ plt.show()
 ```
 
 <div style="text-align: center;" markdown="1"><font size="3">
-<img src="http://mbesancon.github.io/BankNotes/figures/2dimensions.png" alt=
+<img src="http://mbesancon.github.io/BankNotes/figures/2dimension.png" alt=
 "Decision boundary for two dimensions" style="width: 600px;"/>
 </font>
 </div>
@@ -335,6 +335,46 @@ The model produces on average 2.66 misclassifications for
 went into the training set, which is arbitrary. However, too few
 training points will yield inaccurate models and higher error rates.
 
+# Improvement perspectives and conclusion
+
+On this data set, we managed to build independent and reliable features and
+model the probability of belonging to the forged banknotes class thanks to a
+logistic regression model. This appeared to be quite successful from the error
+estimation on the test set. However, few further progresses could be made.
+
+## Testing other models
+
+We only implemented the logistic regression from scratch, given that several
+models would have increased the length of this article. But some other
+algorithms would have been interesting, such as:
+* K nearest neighbors
+* Support Vector Machine
+* Model-based predictions such as naive Bayes or Quadratic Discriminant Analysis
+* Classification Tree
+
+Fact of interest: the two first algorithms also build linear decision
+boundaries, but based on other criteria.
+
+## Adjusting the costs
+
+We assumed that misclassifying a true banknote was just as bad as doing so for
+a forged one. This is why using a limit at p=0.5 was the optimal choice. But
+suppose that taking a forged banknote for a genuine one costs twice more than
+the opposite error. Then the limit probability will be set at p = 0.25 to
+minimize the overall cost. More generally, a **cost matrix** can be built
+to minimize the sum of the element-wise product of the cost matrix with the
+confusion matrix. Here is an interesting
+[Stack Overflow topic](http://stackoverflow.com/questions/17464229/weka-cost-matrix-interpretation)   
+topic on the matter.
+
+## Online classification
+
+The analysis carried on in this article is still far from the objective of some
+data projects, which would be to build a reusable online classifier.
+In our case, this could be used by bank to instantaneously verify bank notes
+received. This raises some new issues like the update of different parameters
+and the detection of new patterns.
+ 
 ___
 <font size="0.7">
 [1] Image source: scikit-learn.org   
