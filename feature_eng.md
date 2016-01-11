@@ -32,15 +32,6 @@ To follow the following article without any trouble, I would recommend to
 start with the beginning.
 ___
 
-## **Table of Contents**  
-*generated with [DocToc](http://doctoc.herokuapp.com/)*
-
-- [What is feature engineering?](#)
-- [Correlated variables](#)
-	- [Simple linear and polynomial regression](#)
-	- [Advantages and risks](#)
-- [Feature engineering pipeline](#)
-
 # What is feature engineering?
 
 It could be describe as the transformation of raw data to produce

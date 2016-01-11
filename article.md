@@ -25,22 +25,6 @@ ___
 [Part III: Model development
 ](model.html)
 
-## **Table of Contents**  
-*generated with [DocToc](http://doctoc.herokuapp.com/)*
-
-- [Introduction](#)
-	- [Programming choices and libraries](#)
-		- [Language and environment](#)
-		- [Libraries](#)
-		- [Source files](#)
-- [Dataset overview and exploratory analysis](#)
-	- [Data parsing](#)
-	- [Key statistics and overview](#)
-	- [Kernel Density Estimation for each variable by class](#)
-	- [Visualizing variable combinations with scatter plots](#)
-	- [Testing a distribution with Quantile-Quantile plots](#)
-	- [Non-parametric distribution with boxplots](#)
-
 # Introduction
 
 One of the amazing things with data science is the ability to tackle

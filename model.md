@@ -9,7 +9,7 @@ Part III: Model development
 </div>
 
 <div style ="text-align: center;" markdown="1"> <font size="0.7">
-<img src="http://mbesancon.github.io/BankNotes/images/plot_classifier_comparison_001.png" alt="Boundaries for different models" style="width: 600px;"/>
+<img src="http://mbesancon.github.io/BankNotes/images/plot_classifier_comparison_001.png" alt="Boundaries for different models" style="width: 700px;"/>
 </font></div>
 <div style ="text-align: right;" markdown="1"> <font size="0.7">
 [1]
@@ -31,23 +31,6 @@ _____
 To follow the following article without any trouble, I would recommend to
 start with the beginning.
 ___
-
-## **Table of Contents**  
-*generated with [DocToc](http://doctoc.herokuapp.com/)*
-
-- [How does predictive modeling work](#)
-	- [Keep the terminology in mind](#)
-	- [How does classification work?](#)
-	- [Independent evaluation](#)
-- [Our model: logistic regression](#)
-	- [Required parameters](#)
-	- [Learning process](#)
-	- [Decision boundaries and 2D-representation](#)
-- [Implementation](#)
-	- [Elementary functions](#)
-	- [Learning algorithm](#)
-	- [Prediction](#)
-	- [Cross-validated evaluation](#)
 
 # How does predictive modeling work
 
@@ -145,16 +128,59 @@ the transition.
 
 ## Learning process
 
+### Parameters identification issue
+
 Unlike linear regression, the learning process for logistic regression is not
 a straight-forward computation of the parameters through simple linear algebra
 operations. The criterion to optimize is the likelihood, or equivalently, the
 log-likelihood of the parameters:
-L = p
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://bit.ly/1mPbaXW" align="center" border="0" alt="\mathscr{L}(\beta|(X,Z)) = f_{\beta}\left(X=x,Z=z\right)" width="247" height="21" />
+</font>  
+</div>  
+
+### Parameters update
 The best parameters in the sense of the log-likelihood are therefore found
-when its gradient is null. For the logistic regression problem, there is only
-one critical point, which is also the only maximum of the log-likelihood.
-This is why the simplest technique for unconstrained optimization, called
-**gradient descent** can be used here.
+where this function reaches its maximum.
+For the logistic regression problem,
+there is only one critical point, which is also the only maximum of the
+log-likelihood. So the overall process is to start from a random set of
+parameters and to update it in the direction that increases the
+log-likelihood the most. This precise direction is given by the
+**gradient** of the log-likelihood. The updated weights at each iteration
+can be written as:
+
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://bit.ly/1mP9PjM" align="center" border="0" alt="\beta^{(n+1)} = \beta^{(n)} + \gamma^{(n)}\nabla(log(\mathscr{L}(\beta^{(n)})))" width="286" height="24" />  
+</font>  
+</div>  
+
+The optimum is considered as reached when the difference between two
+iterations is low enough.
+
+### Optimal learning rate
+
+The coefficient gamma is called the **learning
+rate**. Higher values lead to quicker variations of the parameters,
+but also to stability and convergence issues. Too small values
+on the other increase the number of steps required to reach an acceptable
+maximum. The best solution is often a varying learning rate, adapting
+the rate of variations. The rate we choose is the following:  
+
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://bit.ly/1mPbuWs" align="center" border="0" alt="\gamma^{(n)} = \alpha\cdot min\left(c_0 ,\ \frac{3}{n^{0.5}+1}\right)" width="239" height="47" />
+</font></div>
+
+Which means that the learning rate is constant for all first steps
+until:   
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://bit.ly/1nc65Jx" align="center" border="0" alt="n > \left(\frac{3-c_0}{c_0}  \right)^2" width="122" height="51" />  
+</font>  
+</div>  
+
+At this point, the learning rate slowly decreases because we assume the
+parameters are getting closer to the right value, which we don't want to
+overshoot.  
 
 ## Decision boundaries and 2D-representation
 
@@ -311,9 +337,10 @@ training points will yield inaccurate models and higher error rates.
 
 ___
 <font size="0.7">
-[1] Image source: scikit-learnorg </font></div>
-
-
+[1] Image source: scikit-learn.org   
+[2] Additional resource from the University of Washington [here](http://courses.washington.edu/css490/2012.Winter/lecture_slides/05b_logistic_regression.pdf)  
+[3] Resource from the Carnegie Mellon University [here](http://www.cs.cmu.edu/~awm/15781/slides/LogRegress-9-29-05.pdf)
+</font>  
 Get in touch at mathieu(dot)besancon(at)gmail.com, on
 my [personal website](mathieu-besancon.strikingly.com)
 [Github](github.com/mbesancon), [Quora](https://www.quora.com/profile/Mathieu-Besançon),
