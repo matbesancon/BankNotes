@@ -77,7 +77,7 @@ technique could correct this bias, but a polynomial regression is the most
 straight-forward method to capture a higher part of the variance here.
 The second-degree polynomial model can be written as:
 <div style ="text-align: center;" markdown="1"> <font size="0.7">
-<img src="http://bit.ly/1K6AIoI" align="center" border="0" alt="a\cdot x^2 + b\cdot x + c" width="129" height="19" />  
+<img src="http://bit.ly/1OWQ3zI" align="center" border="0" alt="\hat{y}_i = a\cdot x_i^2 + b\cdot x_i + c" width="171" height="26" />
 </font>  
 </div>
 and can be found through least-square model in numpy:
@@ -107,7 +107,7 @@ which should be independent from the skewness. The most obvious value is the
 residual of the polynomial regression we performed.
 
 <div style="text-align: center;" markdown="1"><font size="3">
-<img src="http://bit.ly/1K6B7aQ" align="center" border="0" alt="e_i = \hat{y}_i - y_i = a\cdot x_i^2 + b\cdot x_i + c - y_i" width="276" height="26" />
+<img src="http://bit.ly/1K8nmbC" align="center" border="0" alt="e_i = \hat{y}_i - y_i = a\cdot x_i^2 + b\cdot x_i + c - y_i" width="276" height="26" />
 </font></div>  
 
 We can represent this residual versus the explanatory variable
@@ -223,7 +223,7 @@ the distance to the first model and the distance to the second
 model, which will be noted "d", can be computed as:
 
 <div style="text-align: center;" markdown="1"><font size="3">
-<img src="http://bit.ly/1SaWPlD" align="center" border="0" alt="d_i = |{(y_i - f_0(x_i)| - |y_i - f_1(x_i)|" width="246" height="19" />
+<img src="http://bit.ly/1OWQqdC" align="center" border="0" alt="d_i = |{(y_i - f_0(x_i)| - |y_i - f_1(x_i)|" width="246" height="19" />
 </font>
 </div>
 
@@ -275,7 +275,7 @@ the difference between the maximum and minimum values. The outcome values
 are all contained in the interval [0,1].  
 
 <div style="text-align: center;" markdown="1"><font size="3">
-<img src="http://bit.ly/1mNGxSz" align="center" border="0" alt="x_{j, stand} = \frac{x_j}{max(x_j)-min(x_j)}" width="232" height="44" />  
+<img src="http://bit.ly/1OWQt9k" align="center" border="0" alt="x_{j, stand} = \frac{x_j}{max(x_j)-min(x_j)}" width="232" height="44" />
 </font>
 </div>
 
