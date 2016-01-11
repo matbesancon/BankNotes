@@ -426,7 +426,7 @@ Part III: Model development
 </div>
 
 <div style="text-align: center;" markdown="1"> <font size="0.7">
-<img src="http://mbesancon.github.io/BankNotes/images/plot_classifier_comparison_001.png" alt="Boundaries for different models" style="width: 600px;">
+<img src="http://mbesancon.github.io/BankNotes/images/plot_classifier_comparison_001.png" alt="Boundaries for different models" style="width: 700px;">
 </font></div>
 <div style="text-align: right;" markdown="1"> <font size="0.7">
 [1]
@@ -441,29 +441,6 @@ Part III: Model development
 <p>To follow the following article without any trouble, I would recommend to
 start with the beginning.</p>
 <hr>
-<h2 id="-table-of-contents-"><strong>Table of Contents</strong></h2>
-<p><em>generated with <a href="http://doctoc.herokuapp.com/">DocToc</a></em></p>
-<ul>
-<li><a href="#">How does predictive modeling work</a><ul>
-<li><a href="#">Keep the terminology in mind</a></li>
-<li><a href="#">How does classification work?</a></li>
-<li><a href="#">Independent evaluation</a></li>
-</ul>
-</li>
-<li><a href="#">Our model: logistic regression</a><ul>
-<li><a href="#">Required parameters</a></li>
-<li><a href="#">Learning process</a></li>
-<li><a href="#">Decision boundaries and 2D-representation</a></li>
-</ul>
-</li>
-<li><a href="#">Implementation</a><ul>
-<li><a href="#">Elementary functions</a></li>
-<li><a href="#">Learning algorithm</a></li>
-<li><a href="#">Prediction</a></li>
-<li><a href="#">Cross-validated evaluation</a></li>
-</ul>
-</li>
-</ul>
 <h1 id="how-does-predictive-modeling-work">How does predictive modeling work</h1>
 <h2 id="keep-the-terminology-in-mind">Keep the terminology in mind</h2>
 <p>This is important to understand the principles and
@@ -547,16 +524,49 @@ the transition.</p>
 </div>
 
 <h2 id="learning-process">Learning process</h2>
+<h3 id="parameters-identification-issue">Parameters identification issue</h3>
 <p>Unlike linear regression, the learning process for logistic regression is not
 a straight-forward computation of the parameters through simple linear algebra
 operations. The criterion to optimize is the likelihood, or equivalently, the
-log-likelihood of the parameters:
-L = p
-The best parameters in the sense of the log-likelihood are therefore found
-when its gradient is null. For the logistic regression problem, there is only
-one critical point, which is also the only maximum of the log-likelihood.
-This is why the simplest technique for unconstrained optimization, called
-<strong>gradient descent</strong> can be used here.</p>
+log-likelihood of the parameters:</p>
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://bit.ly/1mPbaXW" align="center" border="0" alt="\mathscr{L}(\beta|(X,Z)) = f_{\beta}\left(X=x,Z=z\right)" width="247" height="21">
+</font><br></div>  
+
+<h3 id="parameters-update">Parameters update</h3>
+<p>The best parameters in the sense of the log-likelihood are therefore found
+where this function reaches its maximum.
+For the logistic regression problem,
+there is only one critical point, which is also the only maximum of the
+log-likelihood. So the overall process is to start from a random set of
+parameters and to update it in the direction that increases the
+log-likelihood the most. This precise direction is given by the
+<strong>gradient</strong> of the log-likelihood. The updated weights at each iteration
+can be written as:</p>
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://bit.ly/1mP9PjM" align="center" border="0" alt="\beta^{(n+1)} = \beta^{(n)} + \gamma^{(n)}\nabla(log(\mathscr{L}(\beta^{(n)})))" width="286" height="24"><br></font><br></div>  
+
+<p>The optimum is considered as reached when the difference between two
+iterations is low enough.</p>
+<h3 id="optimal-learning-rate">Optimal learning rate</h3>
+<p>The coefficient gamma is called the <strong>learning
+rate</strong>. Higher values lead to quicker variations of the parameters,
+but also to stability and convergence issues. Too small values
+on the other increase the number of steps required to reach an acceptable
+maximum. The best solution is often a varying learning rate, adapting
+the rate of variations. The rate we choose is the following:  </p>
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://bit.ly/1mPbuWs" align="center" border="0" alt="\gamma^{(n)} = \alpha\cdot min\left(c_0 ,\ \frac{3}{n^{0.5}+1}\right)" width="239" height="47">
+</font></div>
+
+<p>Which means that the learning rate is constant for all first steps
+until:   </p>
+<div style="text-align: center;" markdown="1"><font size="3">
+<img src="http://bit.ly/1nc65Jx" align="center" border="0" alt="n &gt; \left(\frac{3-c_0}{c_0}  \right)^2" width="122" height="51"><br></font><br></div>  
+
+<p>At this point, the learning rate slowly decreases because we assume the
+parameters are getting closer to the right value, which we don&#39;t want to
+overshoot.  </p>
 <h2 id="decision-boundaries-and-2d-representation">Decision boundaries and 2D-representation</h2>
 <p>A <strong>decision region</strong> is the subset of the features space within which the
 decision taken by the model is identical. A <strong>decision boundary</strong> is the
@@ -605,8 +615,8 @@ went into the training set, which is arbitrary. However, too few
 training points will yield inaccurate models and higher error rates.</p>
 <hr>
 <p><font size="0.7">
-[1] Image source: scikit-learnorg </font></p>
-<p>Get in touch at mathieu(dot)besancon(at)gmail.com, on
+[1] Image source: scikit-learn.org<br>[2] Additional resource from the University of Washington <a href="http://courses.washington.edu/css490/2012.Winter/lecture_slides/05b_logistic_regression.pdf">here</a><br>[3] Resource from the Carnegie Mellon University <a href="http://www.cs.cmu.edu/~awm/15781/slides/LogRegress-9-29-05.pdf">here</a>
+</font><br>Get in touch at mathieu(dot)besancon(at)gmail.com, on
 my <a href="mathieu-besancon.strikingly.com">personal website</a>
 <a href="github.com/mbesancon">Github</a>, <a href="https://www.quora.com/profile/Mathieu-Besan&#xE7;on">Quora</a>,
 <a href="https://fr.linkedin.com/in/mbesancon/en">Linkedin</a>
