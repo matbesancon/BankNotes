@@ -5,7 +5,11 @@ A complete predictive modeling project in Python
 </font>  
 <font size="4">
 Part I: Preprocessing and exploratory analysis
-</font>
+</font>  
+
+<font size="5">
+Mathieu Besançon
+</font>  
 </div>
 
 ___

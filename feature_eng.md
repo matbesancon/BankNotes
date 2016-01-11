@@ -5,9 +5,11 @@ A complete predictive modeling project in Python
 </font>  
 <font size="4">
 Part II: Feature engineering: sorting out the valuable information  
-</font>  
-</div>  
-
+</font>
+<font size="5">
+Mathieu Besançon  
+</font>
+</div>   
 <div style ="text-align: center;" markdown="1"> <font size="0.7">
 <img src="http://mbesancon.github.io/BankNotes/images/svmexample.png" alt="Feature engineering for SVM" style="width: 400px;"/>
 </font></div>
