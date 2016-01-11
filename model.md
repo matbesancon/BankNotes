@@ -5,7 +5,10 @@ A complete predictive modeling project in Python
 </font>  
 <font size="4">
 Part III: Model development
-</font>
+</font>  
+<font size="5">
+Mathieu Besançon
+</font>  
 </div>
 
 <div style ="text-align: center;" markdown="1"> <font size="0.7">
@@ -373,8 +376,11 @@ The analysis carried on in this article is still far from the objective of some
 data projects, which would be to build a reusable online classifier.
 In our case, this could be used by bank to instantaneously verify bank notes
 received. This raises some new issues like the update of different parameters
-and the detection of new patterns.
- 
+and the detection of new patterns.  
+<p></p>
+Special thanks to Rémi for reading the first awful drafts
+and giving me some valuable feedback.
+
 ___
 <font size="0.7">
 [1] Image source: scikit-learn.org   
