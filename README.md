@@ -9,3 +9,7 @@ Blog article on a full data science project: detecting forged banknotes through 
 ## Part II [here](http://mbesancon.github.io/BankNotes/feature_eng.html): 
 * Dealing with correlated data
 * Variable scaling
+
+## Part III [here](http://mbesancon.github.io/BankNotes/model.html)
+* Modeling and optimization
+* GLM from scratch
